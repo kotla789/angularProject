@@ -1,0 +1,14 @@
+.carrer {
+    position:absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+.carrer p {
+    text-align: justify;
+    color: blue;
+    text-indent: 200px;
+    line-height: 25px;
+    
+}
+h4 {
+    color: green;
+}

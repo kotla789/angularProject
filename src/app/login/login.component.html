@@ -1,0 +1,21 @@
+
+<div class="box">
+    <div class="container-fluid">
+        <h1>Login Page</h1>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group inputBox">
+                <label>Email :</label>
+                <input type="email" class="form-control" #name=ngModel [(ngModel)]="secondModel.email" name="email" placeholder="enter your email"><br>
+            </div>
+            <div class="form-group inputBox">
+                <label>Password</label>
+                <input type="password" class="form-control" #name=ngModel [(ngModel)]="secondModel.password" name="password" placeholder="Please enter your password"><br>
+            </div>
+            <button type="submit" value="Login" class="btn btn-success">Login</button>
+        </form>
+
+    </div>
+    
+
+
+</div>

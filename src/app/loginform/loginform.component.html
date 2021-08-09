@@ -1,0 +1,130 @@
+
+<!--<div class="container-fluid">
+<h3>Registration Form</h3>
+<form #userForm="ngForm">
+    <div class=myForm>
+    {{ userForm.value | json}}</div>
+    <div class="form-group" >
+       
+        <label>Username</label>
+        <input type="text" class="form-control" ngModel name="username" placeholder="enter a user name"><br>
+    </div>
+    <div class="form-group">
+        <label>Emai</label>
+        <input type="email" class="form-control" ngModel name="email" placeholder="enter your email"><br>
+    </div>
+    <div class="form-group">
+        <label>phone</label>
+        <input type="email" class="form-control" ngModel name="phone" placeholder="enter your phone number"><br>
+    </div>
+    <div class="form-group">
+        <select class="custom-select">
+            <option selected>Iam intrested in</option>
+            <option *ngFor="let topic of courses" ngModel name="topic">{{topic}}</option>            
+        </select>
+    </div><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" ngModel id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Default radio
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" ngModel id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+          Default checked radio
+        </label>
+      </div>
+    <br>
+    <div class="form-check">
+        <label class="form-check-label">Language:</label>
+        &nbsp;&nbsp;<input type="checkbox" ngModel name="telugu">Telugu
+        &nbsp;&nbsp;<input type="checkbox" ngModel  name="hindi">Hindi
+        &nbsp;&nbsp;<input type="checkbox" ngModel  name="english">English
+    </div><br>
+
+    <button type="submit" class="btn btn-primary">submitForm</button>
+</form>
+</div>-->
+<!-- <div class="myBackground"></div> -->
+<div class="box">  
+     <div class="container-fluid">
+        <h2>Registration form</h2>
+        <form #userForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" novalidate>
+           <!-- <div class="myForm">{{userForm.value | json}}</div>
+            <div class="myForm">{{userModel | json}}</div>-->
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group inputBox">
+                        <label>Username</label>
+                        <input type="text" [class.is-invalid]="name.invalid && name.touched" class="form-control" #name="ngModel" 
+                         [(ngModel)]="userModel.name" name="username" placeholder="Enter a user name" required>
+                         <small class="text-danger" [class.d-none]="name.valid || name.untouched">user name is required</small>
+                     </div>
+                     <!-- <div class="myForm">{{name.untouched}}</div>  -->
+                     <div class="form-group inputBox">
+                        <label>Phone number</label>
+                        <input type="tel" class="form-control" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched"
+                         [(ngModel)]="userModel.phone" name="phone" placeholder="please enter number"
+                         pattern="^\d{10}$" required>
+                         <div *ngIf="phone.errors && (phone.invalid || phone.touched)">
+                             <small class="text-danger" *ngIf="phone.errors.required">phone number is required</small>
+                             <small class="text-danger" *ngIf="phone.errors.pattern">phone number is invalid!</small>
+                         </div>
+                     </div>
+                     <div class="form-group inputBox">
+                        <label>Password</label>
+                        <input type="password" class="form-control" [(ngModel)]="userModel.password" name="password" 
+                       #password="ngModel" [class.is-invalid]="password.invalid" placeholder="please enter your password"
+                       required>
+                      
+                        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password must be required !</small> 
+                     </div>
+                    
+                </div>
+                <div class="col-6">
+                    <div class="form-group inputBox">
+                        <label>Email</label>
+                        <input type="email" class="form-control" [(ngModel)]="userModel.email" name="email" #email="ngModel"
+                       [class.is-invalid]="email.invalid && email.touched" placeholder="enter your mail"
+                       pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+                       <div *ngIf="email.errors && (email.invalid || email.touched)">
+                           <small class="text-danger" *ngIf="email.errors.required">email is required</small>
+                           <small  class="text-danger" *ngIf="email.errors.pattern">email is required!</small>
+                       </div>
+                    </div>
+                  <div class="form-group inputBox">
+                      <select class="custom-select" name="g"  [(ngModel)]="userModel.gender" #gendertype="ngModel"
+                      (blur)="validategender(gendertype.value)"
+                      (change)="validategender(gendertype.value)"
+                     [class.is-invalid]="gendertypeHasError && gendertype.touched" required>
+                          <option value="default">Select Gender</option>
+                          <option *ngFor="let g of gender">{{g}}</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="!gendertypeHasError || gendertype.untouched">select Gender Type</small>
+                  </div><br>
+                      
+                      
+                  
+                    <div class="form-group inputBox">
+                        <select class="custom-select " name="course" [(ngModel)]="userModel.course" #course="ngModel"
+                        (blur)="validatecourse(course.value)"
+                        (change)="validatecourse(course.value)"
+                        [class.is-invalid]="courseHasError && course.touched" required><br>
+                            <option value="default">select course</option>
+                            <option *ngFor="let course of courses" >{{course}}</option>
+                        </select>
+                        <small class="text-danger" [class.d-none]="!courseHasError || course.untouched">select any course</small>
+                    </div>
+                    <div class="form-check inputBox">
+                        <label class="form-check-label">Language :</label>
+                       &nbsp;&nbsp;&nbsp; <input type="checkbox" [(ngModel)]="userModel.telugu" name="telugu"  >Telugu
+                       &nbsp;&nbsp;&nbsp; <input type="checkbox" [(ngModel)]="userModel.hindi" name="hindi" >Hindi<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" [(ngModel)]="userModel.english" name="english" >English
+                    </div><br>
+                </div>
+            </div>
+            <button [disabled]="userForm.form.invalid || courseHasError || gendertypeHasError" class="btn btn-primary" type="submit">submit</button>
+        </form>
+    </div>
+</div>

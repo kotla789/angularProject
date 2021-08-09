@@ -1,0 +1,16 @@
+.about {
+    position:absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+p {
+   
+    color: slateblue;
+    text-align: justify;
+    text-indent: 200px;
+    line-height: 25px;
+    font-weight: bold;
+}
+h2 {
+   
+    color: palevioletred;
+}

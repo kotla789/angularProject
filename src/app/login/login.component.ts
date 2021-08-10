@@ -17,7 +17,7 @@ secondModel=new SecondForm( '','');
   ngOnInit(): void {
   }
 onSubmit(){
-this._loginForm.enroll(this.secondModel).subscribe(
+this._loginForm.login(this.secondModel).subscribe(
   data => {
     if(data.length === 0){
       alert("not a registered user")

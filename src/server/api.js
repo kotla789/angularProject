@@ -24,6 +24,7 @@ router.post('/register', function(req,res){
             console.log("error"+error)
         }
         else{
+            console.log(registereduser)
             res.status(200).send({
                 "message":"data received"
             })
@@ -55,10 +56,10 @@ router.post('/checkifemailisalreadyused', (req,res) => {
         email :enteredmail
     },(err,data) => {
         if(err) {
-            res.json(err)
+            res.send(err)
         }
         else {
-            res.json(data)
+            res.send(data)
         }
     })
 })

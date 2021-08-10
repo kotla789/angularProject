@@ -11,7 +11,7 @@ export class LoginFormService {
   constructor(private _http:HttpClient) { 
 
   }
-  enroll(second:SecondForm){
+  login(second:SecondForm){
    return this._http.post<any>(this._Url,second);
   }
 }
